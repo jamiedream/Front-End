@@ -1,0 +1,47 @@
+[11-Aug-2016 06:51:07 UTC] PHP Parse error:  syntax error, unexpected ')', expecting ';' in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/160810.php on line 4
+[11-Aug-2016 06:54:41 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/160810.php on line 8
+[11-Aug-2016 07:55:04 UTC] PHP Fatal error:  Cannot re-assign auto-global variable _POST in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/160810.php on line 6
+[11-Aug-2016 08:38:15 UTC] PHP Parse error:  syntax error, unexpected 'ShowOne' (T_STRING) in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/160810.php on line 6
+[11-Aug-2016 08:39:12 UTC] PHP Fatal error:  Cannot re-assign auto-global variable _POST in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/160810.php on line 6
+[11-Aug-2016 16:36:49 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 10
+[11-Aug-2016 16:49:01 UTC] PHP Parse error:  syntax error, unexpected '!=' (T_IS_NOT_EQUAL) in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 11
+[11-Aug-2016 16:52:20 UTC] PHP Warning:  shuffle() expects parameter 1 to be array, string given in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 16
+[11-Aug-2016 16:52:20 UTC] PHP Stack trace:
+[11-Aug-2016 16:52:20 UTC] PHP   1. {main}() /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php:0
+[11-Aug-2016 16:52:20 UTC] PHP   2. shuffle() /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php:16
+[11-Aug-2016 16:57:13 UTC] PHP Warning:  shuffle() expects parameter 1 to be array, string given in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 16
+[11-Aug-2016 16:57:13 UTC] PHP Stack trace:
+[11-Aug-2016 16:57:13 UTC] PHP   1. {main}() /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php:0
+[11-Aug-2016 16:57:13 UTC] PHP   2. shuffle() /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php:16
+[11-Aug-2016 17:02:10 UTC] PHP Parse error:  syntax error, unexpected 'for' (T_FOR) in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 11
+[12-Aug-2016 05:15:17 UTC] PHP Fatal error:  Maximum execution time of 300 seconds exceeded in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 16
+[12-Aug-2016 05:15:17 UTC] PHP Stack trace:
+[12-Aug-2016 05:15:17 UTC] PHP   1. {main}() /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php:0
+[12-Aug-2016 11:13:42 UTC] PHP Fatal error:  Maximum execution time of 300 seconds exceeded in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 16
+[12-Aug-2016 11:13:42 UTC] PHP Stack trace:
+[12-Aug-2016 11:13:42 UTC] PHP   1. {main}() /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php:0
+[12-Aug-2016 11:18:36 UTC] PHP Fatal error:  Maximum execution time of 300 seconds exceeded in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 16
+[12-Aug-2016 11:18:36 UTC] PHP Stack trace:
+[12-Aug-2016 11:18:36 UTC] PHP   1. {main}() /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php:0
+[12-Aug-2016 15:09:54 UTC] PHP Parse error:  syntax error, unexpected '!=' (T_IS_NOT_EQUAL) in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 17
+[12-Aug-2016 15:16:30 UTC] PHP Fatal error:  Maximum execution time of 300 seconds exceeded in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 15
+[12-Aug-2016 15:16:30 UTC] PHP Stack trace:
+[12-Aug-2016 15:16:30 UTC] PHP   1. {main}() /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php:0
+[12-Aug-2016 15:18:11 UTC] PHP Fatal error:  Maximum execution time of 300 seconds exceeded in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 16
+[12-Aug-2016 15:18:11 UTC] PHP Stack trace:
+[12-Aug-2016 15:18:11 UTC] PHP   1. {main}() /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php:0
+[12-Aug-2016 15:23:59 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 12
+[12-Aug-2016 15:25:05 UTC] PHP Parse error:  syntax error, unexpected '!=' (T_IS_NOT_EQUAL) in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 12
+[13-Aug-2016 06:35:37 UTC] PHP Parse error:  syntax error, unexpected '!=' (T_IS_NOT_EQUAL) in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 6
+[13-Aug-2016 07:09:20 UTC] PHP Fatal error:  Function name must be a string in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 4
+[13-Aug-2016 07:09:20 UTC] PHP Stack trace:
+[13-Aug-2016 07:09:20 UTC] PHP   1. {main}() /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php:0
+[13-Aug-2016 07:21:11 UTC] PHP Fatal error:  Call to undefined function sum() in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php on line 10
+[13-Aug-2016 07:21:11 UTC] PHP Stack trace:
+[13-Aug-2016 07:21:11 UTC] PHP   1. {main}() /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/1234.php:0
+[13-Aug-2016 10:31:30 UTC] PHP Fatal error:  Function name must be a string in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/date.php on line 25
+[13-Aug-2016 10:31:30 UTC] PHP Stack trace:
+[13-Aug-2016 10:31:30 UTC] PHP   1. {main}() /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/date.php:0
+[13-Aug-2016 10:39:29 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/date.php on line 10
+[13-Aug-2016 10:40:06 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/date.php on line 10
+[13-Aug-2016 10:45:46 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/ubuntu/workspace/homework-Jamie/hw_php_practices-jamiedream/date.php on line 10

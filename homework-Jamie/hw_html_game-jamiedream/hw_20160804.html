@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Breakout Game</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script>
+		$(function() {
+			// coding here
+			var canvas = document.getElementById('canvas');
+			var ctx = canvas.getContext("2d");
+
+			var paddleX = 100;
+			var paddleY = 460;
+
+			var paddleWidth = 250; //提高打擊率
+			var paddleHeight = 5;
+
+			var paddleDeltaX = 0;
+			var paddleDeltaY = 0;
+
+			function drawPaddle() {
+				ctx.fillRect(paddleX, paddleY, paddleWidth, paddleHeight);
+			}
+			drawPaddle();
+
+			var ballX = 300;
+			var ballY = 300;
+			var ballRadius = 50; //增加圓球半徑
+
+			function drawBall() {
+				ctx.beginPath();
+				ctx.arc(ballX, ballY, ballRadius, 0, 2 * Math.PI, true);
+				ctx.fill();
+			}
+			drawBall();
+
+			var brickPerRow = 8;
+			var brickHeight = 20;
+			var brickWidth = canvas.width / brickPerRow;
+
+			var brick = [
+				[1, 1, 1, 1, 1, 1, 1, 1],
+				[2, 2, 2, 2, 2, 2, 2, 2],
+				[3, 3, 3, 3, 3, 3, 3, 3],
+				[0, 1, 2, 3, 0, 1, 2, 3]
+			];
+
+			function createBricks() {
+				for (var i = 0; i < brick.length; i++) {
+					for (var j = 0; j < brick[i].length; j++) {
+						drawBrick(j, i, brick[i][j]);
+
+					}
+
+
+				}
+			}
+
+			function drawBrick(x, y, type) {
+				switch (type) {
+					case 1:
+						ctx.fillStyle = "yellow";
+						break;
+					case 2:
+						ctx.fillStyle = "grey";
+						break;
+					case 3:
+						ctx.fillStyle = "green";
+						break;
+					default:
+						ctx.clearRect(x * brickWidth, y * brickHeight, brickWidth, brickHeight);
+						break;
+				}
+				if (type) {
+					ctx.fillRect(x * brickWidth, y * brickHeight, brickWidth, brickHeight);
+					ctx.strokeRect(x * brickWidth +1, y * brickHeight+1 , brickWidth-2 , brickHeight-2 );
+				}
+			}
+			createBricks();
+
+
+			var score = 0;
+
+			function displayScoreBoard() {
+				ctx.fillStyle = "#330026";
+				ctx.font = "20px Times New Roman";
+				ctx.clearRect(0, canvas.height - 10, 50, 30);				
+				ctx.fillText("Score:" + score, 10, 480);
+
+
+			}
+			displayScoreBoard();
+
+			var ballDeltaX;
+			var ballDeltaY;
+			var bouncingSound = new Audio("bounce.ogg");
+			var breakingSound = new Audio("break.ogg");
+
+			function animate() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				createBricks();
+				displayScoreBoard();
+				movePaddle();
+				moveBall();
+				drawBall();
+				drawPaddle();
+				paddleMove();
+
+			}
+
+			function explodeBrick(i, j) {
+				// First weaken the brick (0 means brick has gone)
+				brick[i][j]--;
+
+				if (brick[i][j] > 0) {
+					// The brick is weakened but still around. Give a single point.
+					score++;
+				}
+				else {
+					// give player an extra point when the brick disappears
+					score += 2;
+					breakingSound.play();
+				}
+
+
+			}
+
+				
+			
+			
+
+			function collisionXWithBricks() {
+				var bumpedX = false;
+				for (var i = 0; i < brick.length; i++) {
+					for (var j = 0; j < brick[i].length; j++) {
+						if (brick[i][j]) { // if brick is still visible
+							var brickX = j * brickWidth;
+							var brickY = i * brickHeight;
+							if (
+								// barely touching from right
+								((ballX + ballDeltaX + ballRadius >= brickX) &&
+									(ballX + ballRadius <= brickX)) ||
+								// barely touching from left
+								((ballX + ballDeltaX - ballRadius <= brickX + brickWidth) &&
+									(ballX - ballRadius >= brickX + brickWidth))
+									// barely touching from right
+							) {
+										// barely touching from BOTTOM
+								if ((ballY + ballDeltaY - ballRadius <= brickY + brickHeight) &&
+									(ballY + ballDeltaY + ballRadius >= brickY)) {
+											// barely touching from top
+									// weaken brick and increase score
+									explodeBrick(i, j);
+
+									bumpedX = true;
+								}
+							}
+						}
+					}
+				}
+				return bumpedX;
+			}
+
+			function collisionYWithBricks() {
+
+				var bumpedY = false;
+				for (var i = 0; i < brick.length; i++) {
+					for (var j = 0; j < brick[i].length; j++) {
+						if (brick[i][j]) { // if brick is still visible
+							var brickX = j * brickWidth;
+							var brickY = i * brickHeight;
+							if (
+								// barely touching from below
+								((ballY + ballDeltaY - ballRadius <= brickY + brickHeight) &&
+									(ballY - ballRadius >= brickY + brickHeight)) ||
+								// barely touching from above
+								((ballY + ballDeltaY + ballRadius >= brickY) &&
+									(ballY + ballRadius <= brickY))) {
+								if (ballX + ballDeltaX + ballRadius >= brickX &&
+									ballX + ballDeltaX - ballRadius <= brickX + brickWidth) {
+									// weaken brick and increase score
+									explodeBrick(i, j);
+									bumpedY = true;
+								}
+							}
+						}
+					}
+				}
+				return bumpedY;
+			}
+
+
+			function moveBall() {
+				if (ballY + ballDeltaY - ballRadius < 0 || collisionYWithBricks()) {
+					ballDeltaY = -ballDeltaY;
+					bouncingSound.play();
+				}
+				if (ballY + ballDeltaY + ballRadius > canvas.height) {
+					endGame();
+				}
+				if (ballX + ballDeltaX - ballRadius < 0 ||
+					ballX + ballDeltaX + ballRadius > canvas.width ||
+					collisionXWithBricks()) {
+					ballDeltaX = -ballDeltaX;
+					bouncingSound.play();
+				}
+				if (ballY + ballDeltaY + ballRadius >= paddleY) {
+					if (ballX + ballDeltaX >= paddleX &&
+						ballX + ballDeltaX <= paddleX + paddleWidth) {
+						ballDeltaY = -ballDeltaY;
+						bouncingSound.play();
+					}
+				if(score==90){ //當分數達到90分時結束遊戲
+					endGame();
+				}
+
+				}
+
+
+				ballX = ballX + ballDeltaX;
+				ballY = ballY + ballDeltaY;
+
+
+
+			}
+
+
+
+
+
+
+			var paddleSpeedX = 2;
+
+			function movePaddle() {
+				if (paddleMove == "LEFT") {
+					paddleDeltaX = -paddleSpeedX;
+				}
+				else if (paddleMove == "RIGHT") {
+					paddleDeltaX = paddleSpeedX;
+				}
+				else {
+					paddleMove = 0;
+				}
+
+				if (paddleX + paddleDeltaX < 0 || paddleX + paddleDeltaX + paddleWidth > canvas.width) {
+					paddleDeltaX = 0;
+				}
+				paddleX = paddleX + paddleDeltaX;
+			}
+
+			var gameloop;
+			var paddleMove;
+
+			function startGame() {
+				ballDeltaX = -2;
+				ballDeltaY = -10;
+				paddleMove = "none";
+				paddleDeltaX = 0;
+
+				gameloop = setInterval(animate, 20);
+				$(document).keydown(function(evt) {
+					if (evt.keyCode == 39) {
+						paddleMove = "RIGHT";
+					}
+					else if (evt.keyCode == 37) {
+						paddleMove = "LEFT";
+					}
+				});
+				$(document).keyup(function(evt) {
+					if (evt.keyCode == 39) {
+						paddleMove = "NONE";
+					}
+					else if (evt.keyCode == 37) {
+						paddleMove = "NONE";
+					}
+				});
+
+			}
+
+			function endGame() {
+				clearInterval(gameloop);
+				ctx.fillText("~End~", canvas.width / 2, canvas.height / 2);
+				if(score==90){
+						ballDeltaX=0;
+						ballDeltaY=0;			   //打完所有磚塊後球停止
+						alert("Winner!");          //出現訊息
+
+				}else{
+					alert("Try it again.");    //沒打完出現的訊息
+					document.location.reload();//重新開始
+				
+				}
+			}
+			startGame();
+
+
+
+
+
+		});
+	</script>
+
+	<style type="text/css">
+		canvas {
+			border: 1px solid black;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div align="center">
+		<h1>Breakout</h1>
+		<canvas id="canvas" width="400" height="500"></canvas>
+	</div>
+</body>
+
+</html>

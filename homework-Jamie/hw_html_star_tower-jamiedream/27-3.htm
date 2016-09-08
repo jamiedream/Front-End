@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Experiment</title>
+    <style>
+        body {
+            color: #006600;
+        }
+    </style>
+</head>
+
+<body>
+    <p align="center">
+        <script>
+            getPyramid();
+
+            function getPyramid() {
+                var i = 0;
+                var s = 1;
+                for (i = 0; i < 20; i += 2) {
+                    for (s = 1; s < i; s++) {
+                        document.write("*");
+                    }
+                    document.write("<br>")
+                }}
+            getVersePyramid();
+            function getVersePyramid(){
+            
+                    for (var i=17; i>=0; i -= 2) {
+                       for (var s=i; s>=1; s--) {
+                        document.write("*");
+                    }
+                  document.write("<br>");
+                }}
+            
+        </script>
+    </p>
+</body>
+
+</html>
